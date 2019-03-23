@@ -18,7 +18,7 @@ class buy_ticket():
         self.date = date
         self.quantity = quantity
 
-    def book_ticket(self):
+    def input_information(self):
 
         se.send_keys_by_xpath(driver, '//*[@id="page-content"]/section[2]/div[2]/article/div[2]/div/div[5]/form/div/div[3]/div[1]/div[2]/div/div[1]/div/div/div/input[2]', self.departure)
         time.sleep(1)
@@ -31,15 +31,23 @@ class buy_ticket():
         se.send_keys_by_xpath(driver, '//*[@id="page-content"]/section[2]/div[2]/article/div[2]/div/div[5]/form/div/div[3]/div[1]/div[3]/div[1]/div/div[1]/div/div[1]/div/div[2]/input', self.date)
         
         se.click_by_xpath(driver, '//*[@id="page-content"]/section[2]/div[2]/article/div[2]/div/div[5]/form/div/div[3]/div[1]/div[4]/div[1]/div[2]')
+        #pos = driver.find_element_by_xpath('//*[@id="page-content"]/section[2]/div[2]/article/div[2]/div/div[5]/form/div/div[3]/div[1]/div[4]/div[2]/div[1]/ul/li[2]/div/div[2]/input')
+        #pos.clear()
+        #pos.send_keys(self.quantity)
         #se.send_keys_by_name(driver, '/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/allJourneyRequirements/@adultTravellers', self.quantity)
         se.click_by_id(driver, 'findtrains')
 
+    def pick_train(self):
+        
+
     def main(self):
-        self.book_ticket()
+        self.input_information()
 
 if __name__=='__main__':
     
     begin = time.time()
+    print(begin)
+    print(type(begin))	
     driver = webdriver.Firefox()
     obj = buy_ticket('Washington, DC', 'WAS', 'Boston, MA', 'BOS', '03/28/2019', '2')
     obj.main()
